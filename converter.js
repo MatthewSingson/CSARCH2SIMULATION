@@ -122,9 +122,27 @@ function getSignBit(input){
         return 0;
     return 0;
 }
+function CoefficientCont(decimal){
+   
+    decimal = decimal.toString();
+    decimal = decimal.slice(1); //Remove most significant digit
+    console.log(decimal);
+    let i = 0;
+    let bcd = [];
+    // This gets the BCD for every digit of the remaining input
+    for (const digit of decimal){
+        bcd[i] = BCD(parseInt(digit));
+        while(bcd[i].length < 4){
+            bcd[i] = 0 + bcd[i];
+        }
+        i++;
+    }
+}
+/*
 let input = [-1,-101,2] // 
 var normalizedinput = Normalize(input[0],input[1],input[2])
 let temp =CFExpCont(normalizedinput[0],normalizedinput[1])
 let CF = temp[0].toString().replaceAll(',', '');
 let Expcont = temp[1].toString().replaceAll(',', '');
 console.log('Combination field and Exp Cont is ' + CF + ' and ' + Expcont );
+*/
