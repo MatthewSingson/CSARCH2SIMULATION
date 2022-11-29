@@ -124,4 +124,5 @@ var normalizedinput = Normalize(input[0],input[1],input[2])
 let temp =CFExpCont(normalizedinput[0],normalizedinput[1])
 let CF = temp[0].toString().replaceAll(',', '');
 let Expcont = temp[1].toString().replaceAll(',', '');
+console.log('Input is -1.234567 * 10 ^ 2');
 console.log('Combination field and Exp Cont is ' + CF + ' and ' + Expcont );
