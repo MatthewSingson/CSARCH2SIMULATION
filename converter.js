@@ -1,9 +1,6 @@
-function BCD(decimal){
-    
-    let binary = decimal.toString(2);
-}
+
 /*Normalize numbers
-  Decimal is the mantissa of a base 10 number
+  Decimal is the significand of a base 10 number
   Exponent is the exponent of a base 10 number
   Round method is an int denoting what round method to choose
   if round method is 1 then truncate
@@ -11,12 +8,18 @@ function BCD(decimal){
   if round method is 3 then Ceiling
   if round method is 4 then Floor*/
 function Normalize(decimal,exponent,roundMethod){
-    decimal = 117123.896;
-    exponent = 0;
-    roundMethod = 2;
     let i = 1
+    if(decimal.toString()[0] == '-' ){
+        let temp = decimal.toString().split('-');
+        decimal = temp[1];
+    }
+    if(decimal.toString()[0] == '+'){
+        let temp = decimal.toString().split('-');
+        decimal = temp[1];
+    }
     let length = decimal.toString().length;
     let pattern = /\./;
+    
     if(pattern.test(decimal.toString()) == false && decimal.toString().length <= 7){
         return decimal;
     }
@@ -31,17 +34,24 @@ function Normalize(decimal,exponent,roundMethod){
             exponent -=1;
         }
         console.log(decimal)
+        console.log(pattern.test(decimal.toString()));
     }
+    if(decimal.toString().length > 7){
     decimal = decimal/10;
     decimal = Math.round(decimal);
-    decimal = parseInt(decimal.toString().substring(0,length));
+    }
     
+    decimal = parseInt(decimal.toString().substring(0,length));
+    console.log(decimal);
     rounded = decimal.toString().length;
-
+    console.log(rounded);
+    
     while(rounded != 7){
         decimal = decimal/10;
         rounded --;
+        console.log(rounded);
     }
+    
     if(pattern.test(decimal.toString())){
     switch(roundMethod) {
         case 1:
@@ -75,6 +85,52 @@ function Normalize(decimal,exponent,roundMethod){
     console.log(norm);
     return norm;
 }
-function CF(Base10Dec){
+function CFExpCont(Base10Dec,exponent){
+    msd = BCD(parseInt(Base10Dec.toString()[0]));
+    while(msd.length < 4){
+        msd = 0 + msd
+    }
+    eprime = exponent + 101;
+    if(exponent < -101 || exponent > 90){
+        combifield = [1,1,1,1,0];
+        console.log('what');
+        return combifield;
+    }
+    eprime = eprime.toString(2);
+    console.log(eprime);
+    if(eprime.length < 8){
+            eprime = '0' + eprime;
+    }
+    console.log(eprime);
     
+    console.log(msd);
+    if(Base10Dec.toString()[0] == '9' || Base10Dec.toString()[0] == '8' ){
+        combifield = [1,1,parseInt(eprime[0]),parseInt(eprime[1]),parseInt(msd[3])];
+        expcont = [parseInt(eprime[2]),parseInt(eprime[3]),parseInt(eprime[4]),parseInt(eprime[5]),parseInt(eprime[6]),parseInt(eprime[7])]
+        
+       
+    }
+    else{
+        combifield = [parseInt(eprime[0]),parseInt(eprime[1]),parseInt(msd[1]),parseInt(msd[2]),parseInt(msd[3])]
+    }
+    expcont = [parseInt(eprime[2]),parseInt(eprime[3]),parseInt(eprime[4]),parseInt(eprime[5]),parseInt(eprime[6]),parseInt(eprime[7])]
+    result = [combifield,expcont];
+    return result;
 }
+function BCD(decimal){
+    let binary = decimal.toString(2);
+    return binary
+}
+function getSignBit(input){
+    if(input.toString()[0] === '-')
+        return 1;
+    if(input.toString()[0] === '+')
+        return 0
+    return 0
+}
+let input = [-1.234567,15,2] // -1.234567 * 10 ^ 2 and rounding to nearest ties to even
+var normalizedinput = Normalize(input[0],input[1],input[2])
+let temp =CFExpCont(normalizedinput[0],normalizedinput[1])
+let CF = temp[0].toString().replaceAll(',', '');
+let Expcont = temp[1].toString().replaceAll(',', '');
+console.log('Combination field and Exp Cont is ' + CF + ' and ' + Expcont );
