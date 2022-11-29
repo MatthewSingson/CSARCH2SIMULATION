@@ -9,11 +9,11 @@
   if round method is 4 then Floor*/
 function Normalize(decimal,exponent,roundMethod){
     let i = 1
-    if(decimal.toString()[0] == '-' ){
+    if(decimal.toString()[0] === '-' ){
         let temp = decimal.toString().split('-');
         decimal = temp[1];
     }
-    if(decimal.toString()[0] == '+'){
+    if(decimal.toString()[0] === '+'){
         let temp = decimal.toString().split('-');
         decimal = temp[1];
     }
@@ -21,7 +21,9 @@ function Normalize(decimal,exponent,roundMethod){
     let pattern = /\./;
     
     if(pattern.test(decimal.toString()) == false && decimal.toString().length <= 7){
-        return decimal;
+        result = [decimal,exponent]
+        return result;
+
     }
     if(pattern.test(decimal.toString())){
         length = length - 1;
@@ -91,9 +93,10 @@ function CFExpCont(Base10Dec,exponent){
         return combifield;
     }
     eprime = eprime.toString(2);
-    if(eprime.length < 8){
+    while(eprime.length < 8){
             eprime = '0' + eprime;
     }
+    
     
     if(Base10Dec.toString()[0] == '9' || Base10Dec.toString()[0] == '8' ){
         combifield = [1,1,parseInt(eprime[0]),parseInt(eprime[1]),parseInt(msd[3])];
@@ -116,10 +119,10 @@ function getSignBit(input){
     if(input.toString()[0] === '-')
         return 1;
     if(input.toString()[0] === '+')
-        return 0
-    return 0
+        return 0;
+    return 0;
 }
-let input = [-1.234567,15,2] // -1.234567 * 10 ^ 2 and rounding to nearest ties to even
+let input = [-1,-101,2] // -1.234567 * 10 ^ 2 and rounding to nearest ties to even
 var normalizedinput = Normalize(input[0],input[1],input[2])
 let temp =CFExpCont(normalizedinput[0],normalizedinput[1])
 let CF = temp[0].toString().replaceAll(',', '');
