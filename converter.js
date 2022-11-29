@@ -33,8 +33,7 @@ function Normalize(decimal,exponent,roundMethod){
             i++;
             exponent -=1;
         }
-        console.log(decimal)
-        console.log(pattern.test(decimal.toString()));
+        
     }
     if(decimal.toString().length > 7){
     decimal = decimal/10;
@@ -42,14 +41,11 @@ function Normalize(decimal,exponent,roundMethod){
     }
     
     decimal = parseInt(decimal.toString().substring(0,length));
-    console.log(decimal);
     rounded = decimal.toString().length;
-    console.log(rounded);
     
     while(rounded != 7){
         decimal = decimal/10;
         rounded --;
-        console.log(rounded);
     }
     
     if(pattern.test(decimal.toString())){
@@ -82,7 +78,6 @@ function Normalize(decimal,exponent,roundMethod){
       }
     }
     norm=[decimal,exponent];
-    console.log(norm);
     return norm;
 }
 function CFExpCont(Base10Dec,exponent){
@@ -93,17 +88,13 @@ function CFExpCont(Base10Dec,exponent){
     eprime = exponent + 101;
     if(exponent < -101 || exponent > 90){
         combifield = [1,1,1,1,0];
-        console.log('what');
         return combifield;
     }
     eprime = eprime.toString(2);
-    console.log(eprime);
     if(eprime.length < 8){
             eprime = '0' + eprime;
     }
-    console.log(eprime);
     
-    console.log(msd);
     if(Base10Dec.toString()[0] == '9' || Base10Dec.toString()[0] == '8' ){
         combifield = [1,1,parseInt(eprime[0]),parseInt(eprime[1]),parseInt(msd[3])];
         expcont = [parseInt(eprime[2]),parseInt(eprime[3]),parseInt(eprime[4]),parseInt(eprime[5]),parseInt(eprime[6]),parseInt(eprime[7])]
