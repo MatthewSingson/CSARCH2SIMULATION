@@ -125,8 +125,10 @@ function getSignBit(input){
 function CoefficientCont(decimal){
    
     decimal = decimal.toString();
+    while(decimal.length < 7){
+      decimal = '0' + decimal;  
+    }
     decimal = decimal.slice(1); //Remove most significant digit
-    console.log(decimal);
     let i = 0;
     let bcd = [];
     // This gets the BCD for every digit of the remaining input
@@ -136,13 +138,18 @@ function CoefficientCont(decimal){
             bcd[i] = 0 + bcd[i];
         }
         i++;
+        
     }
+    bcd = bcd.toString().replaceAll(',', '');
+    
 }
-/*
-let input = [-1,-101,2] // 
+
+
+let input = [-1,-101,2] // significand,exponent,rounding method
 var normalizedinput = Normalize(input[0],input[1],input[2])
+console.log('normalized input is ' + normalizedinput[0])
 let temp =CFExpCont(normalizedinput[0],normalizedinput[1])
 let CF = temp[0].toString().replaceAll(',', '');
 let Expcont = temp[1].toString().replaceAll(',', '');
 console.log('Combination field and Exp Cont is ' + CF + ' and ' + Expcont );
-*/
+console.log('Coefficient Continuation is : ' + CoefficientCont(normalizedinput[0]));
