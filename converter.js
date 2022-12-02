@@ -143,7 +143,31 @@ function CoefficientCont(decimal){
     bcd = bcd.toString().replaceAll(',', '');
     
 }
-
+function denselypacked(bcd){
+    let dpbcd = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0']
+    let checker = [bcd[0], bcd[4], bcd[8]];
+    dpbcd[0] = checker[0];
+    dpbcd[1] = checker[1];
+    dpbcd[2] = checker[2];
+    if (checker[0] == '0' && checker[1] == '0' && checker[2] == '0') {
+        dpbcd = bcd[1] + bcd[2] + bcd[3] + bcd[5] + bcd[6] + bcd[7] + '0' + bcd[9] + bcd[10] + bcd[11];
+    } else if (checker[0] == '0' && checker[1] == '0' && checker[2] == '1') {
+        dpbcd = bcd[1] + bcd[2] + bcd[3] + bcd[5] + bcd[6] + bcd[7] + '1' + '0' + '0' + bcd[11];
+    } else if (checker[0] == '0' && checker[1] == '1' && checker[2] == '0') {
+        dpbcd = bcd[1] + bcd[2] + bcd[3] + bcd[9] + bcd[10] + bcd[7] + '1' + '0' + '1' + bcd[11];
+    } else if (checker[0] == '1' && checker[1] == '0' && checker[2] == '0') {
+        dpbcd = bcd[9] + bcd[10] + bcd[3] + bcd[5] + bcd[6] + bcd[7] + '1' + '1' + '0' + bcd[11]
+    } else if (checker[0] == '0' && checker[1] == '1' && checker[2] == '1') {
+        dpbcd = bcd[1] + bcd[2] + bcd[3] + '1' + '0' + bcd[7] + '1' + '1' + '1' + bcd[11];
+    } else if (checker[0] == '1' && checker[1] == '0' && checker[2] == '1') {
+        dpbcd = bcd[5] + bcd[6] + bcd[3] + '0' + '1' + bcd[7] + '1' + '1' + '1' + bcd[11];
+    } else if (checker[0] == '1' && checker[1] == '1' && checker[2] == '0') {
+        dpbcd = bcd[9] + bcd[10] + bcd[3] + '0' + '0' + bcd[7] + '1' + '1' + '1' + bcd[11];
+    } else if (checker[0] == '1' && checker[1] == '1' && checker[2] == '1') {
+        dpbcd = '0' + '0' + bcd[3] + '1' + '1' + bcd[7] + '1' + '1' + '1' + bcd[11];
+    }
+    return dpbcd;
+}
 
 let input = [-1,-101,2] // significand,exponent,rounding method
 var normalizedinput = Normalize(input[0],input[1],input[2])
