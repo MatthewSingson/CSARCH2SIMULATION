@@ -1,12 +1,4 @@
-/*Normalize numbers
-  Decimal is the significand of a base 10 number
-  Exponent is the exponent of a base 10 number
-  Round method is an int denoting what round method to choose
-  if round method is 1 then truncate
-  if round method is 2 then round to nearest tie to even
-  if round method is 3 then Ceiling
-  if round method is 4 then Floor*/
-  function Normalize(decimal,exponent,roundMethod){
+function Normalize(decimal,exponent,roundMethod){
     let i = 1
     if(decimal.toString()[0] === '-' ){
         let temp = decimal.toString().split('-');
@@ -36,10 +28,10 @@
         }
         
     }
-    if(decimal.toString().length > 7){
+    /*if(decimal.toString().length > 7){
     decimal = decimal/10;
     decimal = Math.round(decimal);
-    }
+    }*/
     
     decimal = parseInt(decimal.toString().substring(0,length));
     rounded = decimal.toString().length;
@@ -47,6 +39,7 @@
     while(rounded != 7){
         decimal = decimal/10;
         rounded --;
+        exponent++
     }
     
     if(pattern.test(decimal.toString())){
@@ -82,9 +75,13 @@
     return norm;
 }
 function CFExpCont(Base10Dec,exponent){
-    msd = BCD(parseInt(Base10Dec.toString()[0]));
+    temp = Base10Dec.toString();
+    while(temp.length < 7){
+        temp = '0' + temp;
+    }
+    msd = BCD(parseInt(temp[0]));
     while(msd.length < 4){
-        msd = 0 + msd
+        msd = '0' + msd;
     }
     eprime = exponent + 101;
     if(exponent < -101 || exponent > 90){
@@ -96,13 +93,13 @@ function CFExpCont(Base10Dec,exponent){
             eprime = '0' + eprime;
     }
     
-    
-    if(Base10Dec.toString()[0] == '9' || Base10Dec.toString()[0] == '8' ){
+    if(temp[0] == '9' || temp[0] == '8' ){
         combifield = [1,1,parseInt(eprime[0]),parseInt(eprime[1]),parseInt(msd[3])];
         expcont = [parseInt(eprime[2]),parseInt(eprime[3]),parseInt(eprime[4]),parseInt(eprime[5]),parseInt(eprime[6]),parseInt(eprime[7])]
         
        
     }
+    
     else{
         combifield = [parseInt(eprime[0]),parseInt(eprime[1]),parseInt(msd[1]),parseInt(msd[2]),parseInt(msd[3])]
     }
@@ -137,7 +134,7 @@ function CoefficientCont(decimal){
             bcd[i] = 0 + bcd[i];
         }
         i++;
-        gn
+        
     }
     bcd = bcd.toString().replaceAll(',', '');
 
