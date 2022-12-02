@@ -1,4 +1,3 @@
-
 /*Normalize numbers
   Decimal is the significand of a base 10 number
   Exponent is the exponent of a base 10 number
@@ -7,7 +6,7 @@
   if round method is 2 then round to nearest tie to even
   if round method is 3 then Ceiling
   if round method is 4 then Floor*/
-function Normalize(decimal,exponent,roundMethod){
+  function Normalize(decimal,exponent,roundMethod){
     let i = 1
     if(decimal.toString()[0] === '-' ){
         let temp = decimal.toString().split('-');
@@ -123,7 +122,7 @@ function getSignBit(input){
     return 0;
 }
 function CoefficientCont(decimal){
-   
+    console.log(decimal);
     decimal = decimal.toString();
     while(decimal.length < 7){
       decimal = '0' + decimal;  
@@ -138,34 +137,34 @@ function CoefficientCont(decimal){
             bcd[i] = 0 + bcd[i];
         }
         i++;
-        
+        gn
     }
     bcd = bcd.toString().replaceAll(',', '');
+
+    return denselypacked(bcd) + ' ' + denselypacked(bcd.slice(12));
     
 }
 function denselypacked(bcd){
     let dpbcd = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0']
-    let checker = [bcd[0], bcd[4], bcd[8]];
-    dpbcd[0] = checker[0];
-    dpbcd[1] = checker[1];
-    dpbcd[2] = checker[2];
-    if (checker[0] == '0' && checker[1] == '0' && checker[2] == '0') {
+
+    if (bcd[0] == '0' && bcd[4] == '0' && bcd[8] == '0') {
         dpbcd = bcd[1] + bcd[2] + bcd[3] + bcd[5] + bcd[6] + bcd[7] + '0' + bcd[9] + bcd[10] + bcd[11];
-    } else if (checker[0] == '0' && checker[1] == '0' && checker[2] == '1') {
+    } else if (bcd[0] == '0' && bcd[4] == '0' && bcd[8] == '1') {
         dpbcd = bcd[1] + bcd[2] + bcd[3] + bcd[5] + bcd[6] + bcd[7] + '1' + '0' + '0' + bcd[11];
-    } else if (checker[0] == '0' && checker[1] == '1' && checker[2] == '0') {
+    } else if (bcd[0] == '0' && bcd[4] == '1' && bcd[8] == '0') {
         dpbcd = bcd[1] + bcd[2] + bcd[3] + bcd[9] + bcd[10] + bcd[7] + '1' + '0' + '1' + bcd[11];
-    } else if (checker[0] == '1' && checker[1] == '0' && checker[2] == '0') {
+    } else if (bcd[0] == '1' && bcd[4] == '0' && bcd[8] == '0') {
         dpbcd = bcd[9] + bcd[10] + bcd[3] + bcd[5] + bcd[6] + bcd[7] + '1' + '1' + '0' + bcd[11]
-    } else if (checker[0] == '0' && checker[1] == '1' && checker[2] == '1') {
+    } else if (bcd[0] == '0' && bcd[4] == '1' && bcd[8] == '1') {
         dpbcd = bcd[1] + bcd[2] + bcd[3] + '1' + '0' + bcd[7] + '1' + '1' + '1' + bcd[11];
-    } else if (checker[0] == '1' && checker[1] == '0' && checker[2] == '1') {
+    } else if (bcd[0] == '1' && bcd[4] == '0' && bcd[8] == '1') {
         dpbcd = bcd[5] + bcd[6] + bcd[3] + '0' + '1' + bcd[7] + '1' + '1' + '1' + bcd[11];
-    } else if (checker[0] == '1' && checker[1] == '1' && checker[2] == '0') {
+    } else if (bcd[0] == '1' && bcd[4] == '1' && bcd[8] == '0') {
         dpbcd = bcd[9] + bcd[10] + bcd[3] + '0' + '0' + bcd[7] + '1' + '1' + '1' + bcd[11];
-    } else if (checker[0] == '1' && checker[1] == '1' && checker[2] == '1') {
+    } else if (bcd[0] == '1' && bcd[4] == '1' && bcd[8] == '1') {
         dpbcd = '0' + '0' + bcd[3] + '1' + '1' + bcd[7] + '1' + '1' + '1' + bcd[11];
     }
+    console.log(dpbcd);
     return dpbcd;
 }
 
