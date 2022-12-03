@@ -121,7 +121,7 @@ function getSignBit(input){
         return 0;
     return 0;
 }
-function CoefficientCont(decimal){
+function CoefficientCont(decimal, mode){
     console.log(decimal);
     decimal = decimal.toString();
     while(decimal.length < 7){
@@ -141,6 +141,10 @@ function CoefficientCont(decimal){
     }
     bcd = bcd.toString().replaceAll(',', '');
 
+	if(mode == 0){
+		return denselypacked(bcd) + denselypacked(bcd.slice(12));
+	}
+	
     return denselypacked(bcd) + ' ' + denselypacked(bcd.slice(12));
     
 }
@@ -183,13 +187,29 @@ function specialcasecheck(CF, Expcont, CoeffCont, input){
 	return output;
 }
 
-let input = [7.25,154,1] // significand,exponent,rounding method
+function signcheck(input){
+	let signbit = '0';
+	
+	if(input[0] < 0){
+		return signbit = '1';
+	}
+	
+	return signbit;
+}
+
+let input = [7123456,20,1] // significand,exponent,rounding method
 var normalizedinput = Normalize(input[0],input[1],input[2])
 console.log('normalized input is ' + normalizedinput[0])
 let temp = CFExpCont(normalizedinput[0],normalizedinput[1])
 let CF = temp[0].toString().replaceAll(',', '');
 let Expcont = temp[1].toString().replaceAll(',', '');
-let CoeffCont = CoefficientCont(normalizedinput[0]);
+let CoeffCont = CoefficientCont(normalizedinput[0], 1);
 let output = specialcasecheck(CF, Expcont, CoeffCont, input);
 console.log('Combination field and Exp Cont is ' + output[0] + ' and ' + output[1] );
 console.log('Coefficient Continuation is : ' + output[2]);
+let outputtohexa = signcheck(input) + output[0] + output[1] + CoefficientCont(normalizedinput[0], 0);
+console.log('full binary is : ' + outputtohexa);
+//let number = parseInt(outputtohexa,2);
+//console.log('number is : ' + number);
+let hexa = parseInt(outputtohexa, 2).toString(16);
+console.log('Hexadecimal value is : ' + hexa);
