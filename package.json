@@ -1,0 +1,24 @@
+{
+  "name": "csarch2simulation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YeetusMaximus99/CSARCH2SIMULATION.git"
+  },
+  "author": "BAUTISTA, RECOMONO, SINGSON, ZAPANTA",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YeetusMaximus99/CSARCH2SIMULATION/issues"
+  },
+  "homepage": "https://github.com/YeetusMaximus99/CSARCH2SIMULATION#readme",
+  "dependencies": {
+    "bootstrap": "^5.2.3",
+    "express": "^4.18.2",
+    "popper.js": "^1.16.1"
+  }
+}
