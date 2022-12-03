@@ -1,12 +1,4 @@
-/*Normalize numbers
-  Decimal is the significand of a base 10 number
-  Exponent is the exponent of a base 10 number
-  Round method is an int denoting what round method to choose
-  if round method is 1 then truncate
-  if round method is 2 then round to nearest tie to even
-  if round method is 3 then Ceiling
-  if round method is 4 then Floor*/
-  function Normalize(decimal,exponent,roundMethod){
+function Normalize(decimal,exponent,roundMethod){
     let i = 1
     if(decimal.toString()[0] === '-' ){
         let temp = decimal.toString().split('-');
@@ -36,17 +28,18 @@
         }
         
     }
-    if(decimal.toString().length > 7){
+    /*if(decimal.toString().length > 7){
     decimal = decimal/10;
     decimal = Math.round(decimal);
-    }
+    }*/
     
     decimal = parseInt(decimal.toString().substring(0,length));
     rounded = decimal.toString().length;
     
-    while(rounded != 7){
+    while(rounded > 7){
         decimal = decimal/10;
         rounded --;
+        exponent++
     }
     
     if(pattern.test(decimal.toString())){
@@ -82,28 +75,34 @@
     return norm;
 }
 function CFExpCont(Base10Dec,exponent){
-    msd = BCD(parseInt(Base10Dec.toString()[0]));
+    let temp = Base10Dec.toString();
+    while(temp.length < 7){
+        temp = '0' + temp;
+    }
+    msd = BCD(parseInt(temp[0]));
     while(msd.length < 4){
-        msd = 0 + msd
+        msd = '0' + msd;
     }
     eprime = exponent + 101;
+	console.log('esponenet is ' + exponent)
     if(exponent < -101 || exponent > 90){
         combifield = [1,1,1,1,0];
-        return combifield;
+        expcont = [parseInt(eprime[2]),parseInt(eprime[3]),parseInt(eprime[4]),parseInt(eprime[5]),parseInt(eprime[6]),parseInt(eprime[7])]
+		result = [combifield,expcont];
+		return result;
     }
     eprime = eprime.toString(2);
-	console.log('eprime is ' + eprime);
     while(eprime.length < 8){
             eprime = '0' + eprime;
     }
     
-    
-    if(Base10Dec.toString()[0] == '9' || Base10Dec.toString()[0] == '8' ){
+    if(temp[0] == '9' || temp[0] == '8' ){
         combifield = [1,1,parseInt(eprime[0]),parseInt(eprime[1]),parseInt(msd[3])];
         expcont = [parseInt(eprime[2]),parseInt(eprime[3]),parseInt(eprime[4]),parseInt(eprime[5]),parseInt(eprime[6]),parseInt(eprime[7])]
         
        
     }
+    
     else{
         combifield = [parseInt(eprime[0]),parseInt(eprime[1]),parseInt(msd[1]),parseInt(msd[2]),parseInt(msd[3])]
     }
@@ -138,6 +137,7 @@ function CoefficientCont(decimal){
             bcd[i] = 0 + bcd[i];
         }
         i++;
+        
     }
     bcd = bcd.toString().replaceAll(',', '');
 
@@ -145,7 +145,7 @@ function CoefficientCont(decimal){
     
 }
 function denselypacked(bcd){
-    let dpbcd = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'];
+    let dpbcd = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0']
 
     if (bcd[0] == '0' && bcd[4] == '0' && bcd[8] == '0') {
         dpbcd = bcd[1] + bcd[2] + bcd[3] + bcd[5] + bcd[6] + bcd[7] + '0' + bcd[9] + bcd[10] + bcd[11];
@@ -170,39 +170,23 @@ function denselypacked(bcd){
 
 function specialcasecheck(CF, Expcont, CoeffCont, input){
 	let output = [CF, Expcont, CoeffCont]
+	console.log('Combination Field is : ' + CF);
 	if(CF == '11110'){
-		let output = 'Infinity' + 'Infinity' + 'Infinity';
+		 return output2 = ['Infinity', 'Infinity', 'Infinity'];
 	}
 	if(CF == '11111'){
-		let output = 'NaN' + 'NaN' + 'NaN';
+		 return output2 = ['NaN', 'NaN', 'NaN'];
 	}
 	if(input[0] == 0){
-		let output = '0' + '0' + '0';
-	}
+		 return output2 = ['0', '0', '0'];
+	}	
 	return output;
-	
 }
 
-function precision(a) {
-  var e = 1;
-  while (Math.round(a * e) / e !== a) e *= 10;
-  return Math.log(e) / Math.LN10;
-}
-
-function floatConversion(fInput, input){
-	let placeValue = precision(fInput);
-	input[1] = input[1] + placeValue;
-	input[0] = fInput * (10 ** placeValue);
-	console.log('float converted is : ' + input[0]);
-	return input
-	
-}
-let fInput = 725;
-let oldinput = [0,25,1] // significand,exponent,rounding method
-let input = floatConversion(fInput, oldinput);
+let input = [7.25,154,1] // significand,exponent,rounding method
 var normalizedinput = Normalize(input[0],input[1],input[2])
 console.log('normalized input is ' + normalizedinput[0])
-let temp =CFExpCont(normalizedinput[0],normalizedinput[1])
+let temp = CFExpCont(normalizedinput[0],normalizedinput[1])
 let CF = temp[0].toString().replaceAll(',', '');
 let Expcont = temp[1].toString().replaceAll(',', '');
 let CoeffCont = CoefficientCont(normalizedinput[0]);
