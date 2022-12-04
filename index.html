@@ -10,6 +10,157 @@
         <script language="javascript" src="js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="css/bootstrap.min.css" />
 
-        <title>IEEE-754 Decimal-32 Translator</title>
+        <title>IEEE-754 Decimal-32 Converter</title>
     </head>
+
+    <body>
+
+    <div class="container"> 
+        <h1 class="center mb-5">Decimal-32 Converter</h1>
+        
+        <div class="input-type-box mb-5 col-10 p-3"
+            style="border-style: solid; border-color: rgb(0, 0, 0); border-width: .25px;">
+
+            <form class ="col-6 mt-4 mb-4">
+                <label for="float-input">Enter Input:</label>
+                <input type="text" class="form-control" id="input">
+                </form>
+
+            <form class ="col-6 mt-4 mb-4">
+                <label for="base10">Base 10 multiplier:</label>
+                <input type="text" class="form-control" id="base10-inp">
+                </form>
+
+            <div class="form-check col-auto">
+                <input class="form-check-input" type="radio" name="round-option" id="trunc-opt" value="trunc" >
+                <label class="form-check-label" for="trunc-opt">Truncate</label>
+            </div>
+
+            <div class="form-check col-auto">
+                    <input class="form-check-input" type="radio" name="round-option" id="roundDown-opt" value="down">
+                    <label class="form-check-label" for="roundDown-opt">Round Down (Round to -Infinity)</label>
+            </div>
+
+            <div class="form-check col-auto">
+                <input class="form-check-input" type="radio" name="round-option" id="roundUp-opt" value="up">
+                <label class="form-check-label" for="roundUp-opt">Round Up (Round to +Infinity)</label>
+            </div>
+            
+            <div class="form-check col-auto">
+                <input class="form-check-input" type="radio" name="round-option" id="ntte-opt" value="ntte">
+                <label class="form-check-label" for="ntte-opt">Nearest Ties to Even</label>
+            </div>
+
+            <div id="input-group" class="ml-2"></div>
+            <div id="btn-translate">
+                <button id="btn-translate" type="button" class="btn btn-primary" style="background-color:rgb(121, 96, 204); margin-top: 10px"
+                onclick="translate()">Translate</button>
+            </div>
+        </div>
+
+        <div class="result col-10 mt-2 p-3" style="border-style: solid; border-color: black; border-width: .25px;">
+            <div class="result row">
+                <div class="col-auto mt-2 md-2">
+                    Result in Binary:
+                </div>
+                <div class="form-group col-auto">
+                </div>
+
+                <div class="input-group col-auto">
+                    <input type="text" class="form-control" id="binary-output" value="1111 1111 1111 1111 1111 1111 1111 1111" readonly>
+                </div>
+
+                <div class="col-auto mt-2 md-2">
+                    Result in Hexadecimal:
+                </div>
+                <div class="form-group col-auto">
+                </div>
+
+                <div class="input-group col-auto">
+                    <input type="text" class="form-control" id="hex-output" value="FFFF FFFF" readonly>
+                </div>
+
+                <div class="export">
+                    <button class="btn btn-primary" id="exportToTxt" style="margin-top: 10px; background-color:rgb(121, 96, 204)" onclick="saveToTxt()"> Save to Text </button>
+                </div>
+            </div> 
+        </div>
+
+    </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+        
+        <script>
+
+            $('#trunc-opt').on('click', (e) => {
+                $('#trunc-opt').attr('clicked','clicked');
+                $('#roundDown-opt').attr('clicked', false);
+                $('#roundUp-opt').attr('clicked', false);
+                $('#ntte-opt').attr('clicked', false);
+                })
+
+            $('#roundDown-opt').on('click', (e) => {
+                $('#trunc-opt').attr('clicked',false);
+                $('#roundDown-opt').attr('clicked', 'clicked');
+                $('#roundUp-opt').attr('clicked', false);
+                $('#ntte-opt').attr('clicked', false);
+                })
+
+            $('#roundUp-opt').on('click', (e) => {
+                $('#trunc-opt').attr('clicked', false);
+                $('#roundDown-opt').attr('clicked', false);
+                $('#roundUp-opt').attr('clicked', 'clicked');
+                $('#ntte-opt').attr('clicked', false);
+                })
+
+            $('#ntte-opt').on('click', (e) => {
+                $('#trunc-opt').attr('clicked',false);
+                $('#roundDown-opt').attr('clicked', false);
+                $('#roundUp-opt').attr('clicked', false);
+                $('#ntte-opt').attr('clicked', 'clicked');
+                })
+
+                translate = (e) =>
+                {
+                    //TODO:
+                    // call backend codes
+
+
+                    // $('#binary-output').val(whatever the binary output is);
+                    // $('#decimal-output').val(whatever the hex output is);
+                }
+
+            
+
+                saveToTxt = (e) => {
+                let binOut = $('#binary-output').val();
+                let hexOut = $('#hex-output').val();
+
+                const textToBlob = new Blob(["Binary: ", binOut, "\n", "Hexadecimal: ", hexOut], {type: 'text/plain'});
+                const fileName = 'output.txt';
+
+                let link = document.createElement("a");
+                link.download = fileName;
+                if(window.webkitURL != null) {
+                    link.href = window.webkitURL.createObjectURL(textToBlob);
+                }else{
+                    link.href = window.URL.createObjectURL(textToBlob);
+                    link.style.display = "none";
+                    document.body.appendChild(link);
+                    }
+
+                    link.click();
+                    alert("Result copied");
+                  }
+        </script>
+    </body>
 </html>
