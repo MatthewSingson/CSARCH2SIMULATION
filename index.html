@@ -56,6 +56,11 @@
                 <label class="form-check-label" for="ntte-opt">Nearest Ties to Even</label>
             </div>
 
+            <div class="form-check col-auto">
+                <input class="form-check-input" type="radio" name="round-option" id="none-opt" value="none">
+                <label class="form-check-label" for="none-opt">No Rounding</label>
+            </div>
+
             <div id="input-group" class="ml-2"></div>
             <div id="btn-translate">
                 <button id="btn-translate" type="button" class="btn btn-primary" style="background-color:rgb(121, 96, 204); margin-top: 10px">Translate</button>
@@ -121,6 +126,7 @@
                 $('#roundDown-opt').attr('clicked', false);
                 $('#roundUp-opt').attr('clicked', false);
                 $('#ntte-opt').attr('clicked', false);
+                $('#none-opt').attr('clicked', false);
                 })
 
             $('#roundDown-opt').on('click', (e) => {
@@ -128,6 +134,7 @@
                 $('#roundDown-opt').attr('clicked', 'clicked');
                 $('#roundUp-opt').attr('clicked', false);
                 $('#ntte-opt').attr('clicked', false);
+                $('#none-opt').attr('clicked', false);
                 })
 
             $('#roundUp-opt').on('click', (e) => {
@@ -135,6 +142,7 @@
                 $('#roundDown-opt').attr('clicked', false);
                 $('#roundUp-opt').attr('clicked', 'clicked');
                 $('#ntte-opt').attr('clicked', false);
+                $('#none-opt').attr('clicked', false);
                 })
 
             $('#ntte-opt').on('click', (e) => {
@@ -142,6 +150,15 @@
                 $('#roundDown-opt').attr('clicked', false);
                 $('#roundUp-opt').attr('clicked', false);
                 $('#ntte-opt').attr('clicked', 'clicked');
+                $('#none-opt').attr('clicked', false);
+                })
+            
+            $('#none-opt').on('click', (e) => {
+                $('#trunc-opt').attr('clicked',false);
+                $('#roundDown-opt').attr('clicked', false);
+                $('#roundUp-opt').attr('clicked', false);
+                $('#ntte-opt').attr('clicked', false);
+                $('#none-opt').attr('clicked', 'clicked');
                 })
 
                 translate = (e) =>
