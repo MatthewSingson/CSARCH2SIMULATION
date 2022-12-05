@@ -44,6 +44,10 @@ function Normalize(decimal,exponent,roundMethod){
     
     if(pattern.test(decimal.toString())){
     switch(roundMethod) {
+        case 0:
+            norm=[decimal,exponent];
+            return norm;
+            break;
         case 1:
             decimal = Math.trunc(decimal)
           break;
