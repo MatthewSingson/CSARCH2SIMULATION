@@ -247,7 +247,7 @@ function outputprint(outputtohexa, output){
 		outputtohexa = hexa;
 	}
 	
-	return outputtohexa;
+	return outputtohexa.toUpperCase();
 	
 }
 
