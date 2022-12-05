@@ -219,24 +219,23 @@ function signcheck(input){
 
 function outputprint(outputtohexa, output){
 	
-	var output;
 	
 	if(output.some(element => element === 'NaN' )){
-		console.log('full binary is : ' + outputtohexa.substring(1));
+		//console.log('full binary is : ' + outputtohexa.substring(1));
 		//let number = parseInt(outputtohexa,2);
 		//console.log('number is : ' + number);
 		//let hexa = parseInt(outputtohexa, 2).toString(16);
 		console.log('Hexadecimal value is : ' + 'NaN');
-		return output = 'NaN';
+		outputtohexa = 'NaN';
 	}
 	
 	else if(output.some(element => element === 'Infinity')){
-		console.log('full binary is : ' + outputtohexa.substring(1));
+		//console.log('full binary is : ' + outputtohexa.substring(1));
 		//let number = parseInt(outputtohexa,2);
 		//console.log('number is : ' + number);
 		//let hexa = parseInt(outputtohexa, 2).toString(16);
 		console.log('Hexadecimal value is : ' + 'Infinity');
-		return output = 'Infinity';
+		outputtohexa = 'Infinity';
 	}
 	
 	else{
@@ -245,9 +244,10 @@ function outputprint(outputtohexa, output){
 		//console.log('number is : ' + number);
 		let hexa = parseInt(outputtohexa, 2).toString(16);
 		console.log('Hexadecimal value is : ' + hexa);
+		outputtohexa = hexa;
 	}
 	
-	return output = hexa;
+	return outputtohexa;
 	
 }
 
