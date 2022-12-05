@@ -10,6 +10,7 @@ app.get('/', function (req, res) {
 })
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
+app.use('/js', express.static(__dirname + '/public/js'))
 app.use('/css/icons', express.static(__dirname + '/node_models/bootstrap-icons/icons'))
 app.listen(port, () => {
     console.log("Running on port " + port);
