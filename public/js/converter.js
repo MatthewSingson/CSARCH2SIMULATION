@@ -184,7 +184,23 @@ function specialcasecheck(CF, Expcont, CoeffCont, input){
 	if(input[0] == 0){
 		 return output2 = ['0', '0', '0'];
 	}	
+	
+	output = checkStringAndReplace(input, output);
+	console.log('output is : ' + output);
+
 	return output;
+}
+
+function checkStringAndReplace(inputstring, inputarray) {
+	  console.log('checkstring entered')	
+  if(Number.isNaN(Number(inputstring[0])) || Number.isNaN(Number(inputstring[1]))) {
+	  console.log('element is string')
+    return inputarray.map(() => 'NaN');
+  } 
+  else {
+	  console.log('checkstring false')		  
+    return inputarray;
+  }
 }
 
 function signcheck(input){
@@ -197,7 +213,41 @@ function signcheck(input){
 	return signbit;
 }
 
-let input = [7123456,20,1] // significand,exponent,rounding method
+function outputprint(outputtohexa, output){
+	
+	var output;
+	
+	if(output.some(element => element === 'NaN' )){
+		console.log('full binary is : ' + outputtohexa.substring(1));
+		//let number = parseInt(outputtohexa,2);
+		//console.log('number is : ' + number);
+		//let hexa = parseInt(outputtohexa, 2).toString(16);
+		console.log('Hexadecimal value is : ' + 'NaN');
+		return output = 'NaN';
+	}
+	
+	else if(output.some(element => element === 'Infinity')){
+		console.log('full binary is : ' + outputtohexa.substring(1));
+		//let number = parseInt(outputtohexa,2);
+		//console.log('number is : ' + number);
+		//let hexa = parseInt(outputtohexa, 2).toString(16);
+		console.log('Hexadecimal value is : ' + 'Infinity');
+		return output = 'Infinity';
+	}
+	
+	else{
+		console.log('full binary is : ' + outputtohexa);
+		//let number = parseInt(outputtohexa,2);
+		//console.log('number is : ' + number);
+		let hexa = parseInt(outputtohexa, 2).toString(16);
+		console.log('Hexadecimal value is : ' + hexa);
+	}
+	
+	return output = hexa;
+	
+}
+
+let input = ['check',20,1] // significand,exponent,rounding method
 var normalizedinput = Normalize(input[0],input[1],input[2])
 console.log('normalized input is ' + normalizedinput[0])
 let temp = CFExpCont(normalizedinput[0],normalizedinput[1])
