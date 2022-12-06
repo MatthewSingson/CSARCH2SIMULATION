@@ -178,6 +178,11 @@ function denselypacked(bcd){
 
 function specialcasecheck(CF, Expcont, CoeffCont, input,exp){
 	let output = [CF, Expcont, CoeffCont]
+	output = checkStringAndReplace(input, output);
+	
+	if(output.some(element => element === 'NaN' )){
+		 return output2 = ['NaN', 'NaN', 'NaN'];
+	}
 	console.log('Combination Field is : ' + CF);
 	if(CF == '11110'){
 		 return output2 = ['Infinity', 'Infinity', 'Infinity'];
@@ -185,16 +190,15 @@ function specialcasecheck(CF, Expcont, CoeffCont, input,exp){
 	if(CF == '11111'){
 		 return output2 = ['NaN', 'NaN', 'NaN'];
 	}
-	if(input[0] == 0){
-		 return output2 = ['0', '0', '0'];
-	}	
 	if(exp < -101 || exp > 90){
        
         return output2 = ['Infinity', 'Infinity', 'Infinity'];
     }
-	output = checkStringAndReplace(input, output);
+	if(input[0] == 0){
+		 return output2 = ['0', '0', '0'];
+	}	
+	
 	console.log('output is : ' + output);
-
 	return output;
 }
 
@@ -222,6 +226,21 @@ function signcheck(input){
 
 function outputprint(outputtohexa, output){
 	
+	console.log('full binary is : ' + outputtohexa);
+	//let number = parseInt(outputtohexa,2);
+	//console.log('number is : ' + number);
+	let hexa = parseInt(outputtohexa, 2).toString(16);
+	console.log('Hexadecimal value is : ' + hexa);
+	outputtohexa = hexa;
+	
+	if(output.some(element => element === 'Infinity')){
+		//console.log('full binary is : ' + outputtohexa.substring(1));
+		//let number = parseInt(outputtohexa,2);
+		//console.log('number is : ' + number);
+		//let hexa = parseInt(outputtohexa, 2).toString(16);
+		console.log('Hexadecimal value is : ' + 'Infinity');
+		outputtohexa = 'Infinity';
+	}
 	
 	if(output.some(element => element === 'NaN' )){
 		//console.log('full binary is : ' + outputtohexa.substring(1));
@@ -232,39 +251,12 @@ function outputprint(outputtohexa, output){
 		outputtohexa = 'NaN';
 	}
 	
-	else if(output.some(element => element === 'Infinity')){
-		//console.log('full binary is : ' + outputtohexa.substring(1));
-		//let number = parseInt(outputtohexa,2);
-		//console.log('number is : ' + number);
-		//let hexa = parseInt(outputtohexa, 2).toString(16);
-		console.log('Hexadecimal value is : ' + 'Infinity');
-		outputtohexa = 'Infinity';
-	}
-	
-	else{
-		console.log('full binary is : ' + outputtohexa);
-		//let number = parseInt(outputtohexa,2);
-		//console.log('number is : ' + number);
-		let hexa = parseInt(outputtohexa, 2).toString(16);
-		console.log('Hexadecimal value is : ' + hexa);
-		outputtohexa = hexa;
-	}
-	
 	return outputtohexa.toUpperCase();
 	
 }
 
 function outputprintbinary(outputtobinary, output){
 	
-	
-	if(output.some(element => element === 'NaN' )){
-		//console.log('full binary is : ' + outputtohexa.substring(1));
-		//let number = parseInt(outputtohexa,2);
-		//console.log('number is : ' + number);
-		//let hexa = parseInt(outputtohexa, 2).toString(16);
-		//console.log('Hexadecimal value is : ' + 'NaN');
-		outputtobinary = 'NaN';
-	}
 	
 	if(output.some(element => element === 'Infinity')){
 		//console.log('full binary is : ' + outputtohexa.substring(1));
@@ -273,6 +265,15 @@ function outputprintbinary(outputtobinary, output){
 		//let hexa = parseInt(outputtohexa, 2).toString(16);
 		//console.log('Hexadecimal value is : ' + 'Infinity');
 		outputtobinary = 'Infinity';
+	}
+	
+	if(output.some(element => element === 'NaN' )){
+		//console.log('full binary is : ' + outputtohexa.substring(1));
+		//let number = parseInt(outputtohexa,2);
+		//console.log('number is : ' + number);
+		//let hexa = parseInt(outputtohexa, 2).toString(16);
+		//console.log('Hexadecimal value is : ' + 'NaN');
+		outputtobinary = 'NaN';
 	}
 	
 	
