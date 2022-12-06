@@ -18,6 +18,8 @@ $(document).ready(function() {
 		let inputarray;
 		let outputtohexa;
 		let hexaprint;
+		let fullbin;
+		let fullbinchecked;	  	 
         if (input == '') {
             $(outputElement).text('No input given.');
             $(outputElement).css('color', 'red');
@@ -45,9 +47,12 @@ $(document).ready(function() {
                 console.log('Coefficient Continuation is : ' + casechecked[2]);
 				outputtohexa = signcheck(inputarray) + casechecked[0] + casechecked[1] + CoefficientCont(normalizedinput[0],0);
 				hexaprint = outputprint(outputtohexa, casechecked);
+				fullbin = signbit + " " + casechecked[0] + " " + casechecked[1] + " " + casechecked[2];
+				fullbinchecked = outputprintbinary(fullbin, casechecked);																		   									 
 				console.log('hexaprint is ' + hexaprint)
 				$(roundElement).val(normalizedinput[0]);
-                $(outputElement).val(signbit + " " + casechecked[0] + " " + casechecked[1] + " " + casechecked[2]);
+                //$(outputElement).val(signbit + " " + casechecked[0] + " " + casechecked[1] + " " + casechecked[2]);
+				$(outputElement).val(fullbinchecked);									 
                 $(hexElement).val(hexaprint);
                 break;
 
@@ -67,9 +72,12 @@ $(document).ready(function() {
                 console.log('Coefficient Continuation is : ' + casechecked[2]);
 				outputtohexa = signcheck(inputarray) + casechecked[0] + casechecked[1] + CoefficientCont(normalizedinput[0],0);
 				hexaprint = outputprint(outputtohexa, casechecked);
+				fullbin = signbit + " " + casechecked[0] + " " + casechecked[1] + " " + casechecked[2];
+				fullbinchecked = outputprintbinary(fullbin, casechecked);																		   									 
 				console.log('hexaprint is ' + hexaprint)
 				$(roundElement).val(normalizedinput[0]);
-                $(outputElement).val(signbit + " " + casechecked[0] + " " + casechecked[1] + " " + casechecked[2]);
+                //$(outputElement).val(signbit + " " + casechecked[0] + " " + casechecked[1] + " " + casechecked[2]);
+				$(outputElement).val(fullbinchecked);									 
                 $(hexElement).val(hexaprint);
                 break;
 
@@ -87,9 +95,12 @@ $(document).ready(function() {
                 console.log('Coefficient Continuation is : ' + casechecked[2]);
 				outputtohexa = signcheck(inputarray) + casechecked[0] + casechecked[1] + CoefficientCont(normalizedinput[0],0);
 				hexaprint = outputprint(outputtohexa, casechecked);
+				fullbin = signbit + " " + casechecked[0] + " " + casechecked[1] + " " + casechecked[2];
+				fullbinchecked = outputprintbinary(fullbin, casechecked);																		   									 
 				console.log('hexaprint is ' + hexaprint)
 				$(roundElement).val(normalizedinput[0]);
-                $(outputElement).val(signbit + " " + casechecked[0] + " " + casechecked[1] + " " + casechecked[2]);
+                //$(outputElement).val(signbit + " " + casechecked[0] + " " + casechecked[1] + " " + casechecked[2]);
+				$(outputElement).val(fullbinchecked);									 
                 $(hexElement).val(hexaprint);
 				
                 break;
@@ -107,9 +118,12 @@ $(document).ready(function() {
                 console.log('Coefficient Continuation is : ' + casechecked[2]);
 				outputtohexa = signcheck(inputarray) + casechecked[0] + casechecked[1] + CoefficientCont(normalizedinput[0],0);
 				hexaprint = outputprint(outputtohexa, casechecked);
+				fullbin = signbit + " " + casechecked[0] + " " + casechecked[1] + " " + casechecked[2];
+				fullbinchecked = outputprintbinary(fullbin, casechecked);																		   									 
 				console.log('hexaprint is ' + hexaprint)
 				$(roundElement).val(normalizedinput[0]);
-                $(outputElement).val(signbit + " " + casechecked[0] + " " + casechecked[1] + " " + casechecked[2]);
+                //$(outputElement).val(signbit + " " + casechecked[0] + " " + casechecked[1] + " " + casechecked[2]);
+				$(outputElement).val(fullbinchecked);									 
                 $(hexElement).val(hexaprint);
                 
                 break;
@@ -127,9 +141,12 @@ $(document).ready(function() {
                 console.log('Coefficient Continuation is : ' + casechecked[2]);
 				outputtohexa = signcheck(inputarray) + casechecked[0] + casechecked[1] + CoefficientCont(normalizedinput[0],0);
 				hexaprint = outputprint(outputtohexa, casechecked);
+				fullbin = signbit + " " + casechecked[0] + " " + casechecked[1] + " " + casechecked[2];
+				fullbinchecked = outputprintbinary(fullbin, casechecked);																		   									 
 				console.log('hexaprint is ' + hexaprint)
 				$(roundElement).val(normalizedinput[0]);
-                $(outputElement).val(signbit + " " + casechecked[0] + " " + casechecked[1] + " " + casechecked[2]);
+                //$(outputElement).val(signbit + " " + casechecked[0] + " " + casechecked[1] + " " + casechecked[2]);
+				$(outputElement).val(fullbinchecked);									 
                 $(hexElement).val(hexaprint);
          
                 break;
