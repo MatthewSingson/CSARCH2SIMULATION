@@ -43,7 +43,7 @@ $(document).ready(function() {
                 console.log('normalized input is ' + normalizedinput[0])
                 console.log('Combination field and Exp Cont is ' + casechecked[0] + ' and ' + casechecked[1] );
                 console.log('Coefficient Continuation is : ' + casechecked[2]);
-				outputtohexa = signcheck(input) + casechecked[0] + casechecked[1] + CoefficientCont(normalizedinput[0],0);
+				outputtohexa = signcheck(inputarray) + casechecked[0] + casechecked[1] + CoefficientCont(normalizedinput[0],0);
 				hexaprint = outputprint(outputtohexa, casechecked);
 				console.log('hexaprint is ' + hexaprint)
 				$(roundElement).val(normalizedinput[0]);
@@ -65,7 +65,7 @@ $(document).ready(function() {
                 console.log('normalized input is ' + normalizedinput[0])
                 console.log('Combination field and Exp Cont is ' + casechecked[0] + ' and ' + casechecked[1] );
                 console.log('Coefficient Continuation is : ' + casechecked[2]);
-				outputtohexa = signcheck(input) + casechecked[0] + casechecked[1] + CoefficientCont(normalizedinput[0],0);
+				outputtohexa = signcheck(inputarray) + casechecked[0] + casechecked[1] + CoefficientCont(normalizedinput[0],0);
 				hexaprint = outputprint(outputtohexa, casechecked);
 				console.log('hexaprint is ' + hexaprint)
 				$(roundElement).val(normalizedinput[0]);
@@ -85,7 +85,7 @@ $(document).ready(function() {
                 console.log('normalized input is ' + normalizedinput[0])
                 console.log('Combination field and Exp Cont is ' + casechecked[0] + ' and ' + casechecked[1] );
                 console.log('Coefficient Continuation is : ' + casechecked[2]);
-				outputtohexa = signcheck(input) + casechecked[0] + casechecked[1] + CoefficientCont(normalizedinput[0],0);
+				outputtohexa = signcheck(inputarray) + casechecked[0] + casechecked[1] + CoefficientCont(normalizedinput[0],0);
 				hexaprint = outputprint(outputtohexa, casechecked);
 				console.log('hexaprint is ' + hexaprint)
 				$(roundElement).val(normalizedinput[0]);
@@ -105,7 +105,7 @@ $(document).ready(function() {
                 console.log('normalized input is ' + normalizedinput[0])
                 console.log('Combination field and Exp Cont is ' + casechecked[0] + ' and ' + casechecked[1] );
                 console.log('Coefficient Continuation is : ' + casechecked[2]);
-				outputtohexa = signcheck(input) + casechecked[0] + casechecked[1] + CoefficientCont(normalizedinput[0],0);
+				outputtohexa = signcheck(inputarray) + casechecked[0] + casechecked[1] + CoefficientCont(normalizedinput[0],0);
 				hexaprint = outputprint(outputtohexa, casechecked);
 				console.log('hexaprint is ' + hexaprint)
 				$(roundElement).val(normalizedinput[0]);
@@ -125,7 +125,7 @@ $(document).ready(function() {
                 console.log('normalized input is ' + normalizedinput[0])
                 console.log('Combination field and Exp Cont is ' + casechecked[0] + ' and ' + casechecked[1] );
                 console.log('Coefficient Continuation is : ' + casechecked[2]);
-				outputtohexa = signcheck(input) + casechecked[0] + casechecked[1] + CoefficientCont(normalizedinput[0],0);
+				outputtohexa = signcheck(inputarray) + casechecked[0] + casechecked[1] + CoefficientCont(normalizedinput[0],0);
 				hexaprint = outputprint(outputtohexa, casechecked);
 				console.log('hexaprint is ' + hexaprint)
 				$(roundElement).val(normalizedinput[0]);
