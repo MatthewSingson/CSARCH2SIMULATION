@@ -41,7 +41,7 @@ $(document).ready(function() {
                 CF = temp[0].toString().replaceAll(',', '');
                 Expcont = temp[1].toString().replaceAll(',', '');
                 result = CoefficientCont(normalizedinput[0],1);
-				casechecked = specialcasecheck(CF, Expcont, result, inputarray);
+				casechecked = specialcasecheck(CF, Expcont, result, inputarray,exp);
                 console.log('normalized input is ' + normalizedinput[0])
                 console.log('Combination field and Exp Cont is ' + casechecked[0] + ' and ' + casechecked[1] );
                 console.log('Coefficient Continuation is : ' + casechecked[2]);
@@ -66,7 +66,7 @@ $(document).ready(function() {
                 CF = temp[0].toString().replaceAll(',', '');
                 Expcont = temp[1].toString().replaceAll(',', '');
                 result = CoefficientCont(normalizedinput[0],1);
-				casechecked = specialcasecheck(CF, Expcont, result, inputarray);
+				casechecked = specialcasecheck(CF, Expcont, result, inputarray,exp);
                 console.log('normalized input is ' + normalizedinput[0])
                 console.log('Combination field and Exp Cont is ' + casechecked[0] + ' and ' + casechecked[1] );
                 console.log('Coefficient Continuation is : ' + casechecked[2]);
@@ -89,7 +89,7 @@ $(document).ready(function() {
                 CF = temp[0].toString().replaceAll(',', '');
                 Expcont = temp[1].toString().replaceAll(',', '');
                 result = CoefficientCont(normalizedinput[0],1);
-				casechecked = specialcasecheck(CF, Expcont, result, inputarray);
+				casechecked = specialcasecheck(CF, Expcont, result, inputarray,exp);
                 console.log('normalized input is ' + normalizedinput[0])
                 console.log('Combination field and Exp Cont is ' + casechecked[0] + ' and ' + casechecked[1] );
                 console.log('Coefficient Continuation is : ' + casechecked[2]);
@@ -112,7 +112,7 @@ $(document).ready(function() {
                 CF = temp[0].toString().replaceAll(',', '');
                 Expcont = temp[1].toString().replaceAll(',', '');
                 result = CoefficientCont(normalizedinput[0],1);
-				casechecked = specialcasecheck(CF, Expcont, result, inputarray);
+				casechecked = specialcasecheck(CF, Expcont, result, inputarray,exp);
                 console.log('normalized input is ' + normalizedinput[0])
                 console.log('Combination field and Exp Cont is ' + casechecked[0] + ' and ' + casechecked[1] );
                 console.log('Coefficient Continuation is : ' + casechecked[2]);
@@ -135,7 +135,7 @@ $(document).ready(function() {
                 CF = temp[0].toString().replaceAll(',', '');
                 Expcont = temp[1].toString().replaceAll(',', '');
                 result = CoefficientCont(normalizedinput[0],1);
-				casechecked = specialcasecheck(CF, Expcont, result, inputarray);
+				casechecked = specialcasecheck(CF, Expcont, result, inputarray,exp);
                 console.log('normalized input is ' + normalizedinput[0])
                 console.log('Combination field and Exp Cont is ' + casechecked[0] + ' and ' + casechecked[1] );
                 console.log('Coefficient Continuation is : ' + casechecked[2]);

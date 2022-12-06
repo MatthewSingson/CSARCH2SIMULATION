@@ -94,12 +94,7 @@ function CFExpCont(Base10Dec,exponent){
     }
     eprime = exponent + 101;
 	console.log('esponenet is ' + exponent)
-    /*if(exponent < -101 || exponent > 90){
-        combifield = [1,1,1,1,0];
-        expcont = [parseInt(eprime[2]),parseInt(eprime[3]),parseInt(eprime[4]),parseInt(eprime[5]),parseInt(eprime[6]),parseInt(eprime[7])]
-		result = [combifield,expcont];
-		return result;
-    }*/
+    
     eprime = eprime.toString(2);
     while(eprime.length < 8){
             eprime = '0' + eprime;
@@ -181,7 +176,7 @@ function denselypacked(bcd){
     return dpbcd;
 }
 
-function specialcasecheck(CF, Expcont, CoeffCont, input){
+function specialcasecheck(CF, Expcont, CoeffCont, input,exp){
 	let output = [CF, Expcont, CoeffCont]
 	console.log('Combination Field is : ' + CF);
 	if(CF == '11110'){
@@ -193,7 +188,10 @@ function specialcasecheck(CF, Expcont, CoeffCont, input){
 	if(input[0] == 0){
 		 return output2 = ['0', '0', '0'];
 	}	
-	
+	if(exp < -101 || exp > 90){
+       
+        return output2 = ['Infinity', 'Infinity', 'Infinity'];
+    }
 	output = checkStringAndReplace(input, output);
 	console.log('output is : ' + output);
 
