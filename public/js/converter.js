@@ -19,19 +19,24 @@ function Normalize(decimal,exponent,roundMethod){
     if(pattern.test(decimal.toString())){
         length = length - 1;
     }
-
+    templength = decimal.toString().length;
     while(pattern.test(decimal.toString())){
+        
         decimal = decimal * 10;
+        console.log("normalized : " + decimal);
         if(i < length){
             i++;
             exponent -=1;
         }
+        if(decimal.toString().length > templength){
+        decimal = decimal*10;
+        decimal = Math.round(decimal)
+        decimal = decimal / 10;
+        console.log("normalized2 : " + decimal);
+        }
         
     }
-    /*if(decimal.toString().length > 7){
-    decimal = decimal/10;
-    decimal = Math.round(decimal);
-    }*/
+    
     
     decimal = parseInt(decimal.toString().substring(0,length));
     rounded = decimal.toString().length;
@@ -89,12 +94,12 @@ function CFExpCont(Base10Dec,exponent){
     }
     eprime = exponent + 101;
 	console.log('esponenet is ' + exponent)
-    if(exponent < -101 || exponent > 90){
+    /*if(exponent < -101 || exponent > 90){
         combifield = [1,1,1,1,0];
         expcont = [parseInt(eprime[2]),parseInt(eprime[3]),parseInt(eprime[4]),parseInt(eprime[5]),parseInt(eprime[6]),parseInt(eprime[7])]
 		result = [combifield,expcont];
 		return result;
-    }
+    }*/
     eprime = eprime.toString(2);
     while(eprime.length < 8){
             eprime = '0' + eprime;
