@@ -1,11 +1,13 @@
 function Normalize(decimal,exponent,roundMethod){
-    let i = 1
+    let i = 1;
+    let temp;
     if(decimal.toString()[0] === '-' ){
-        let temp = decimal.toString().split('-');
+        temp = decimal.toString().split('-');
         decimal = temp[1];
+        temp = '-';
     }
     if(decimal.toString()[0] === '+'){
-        let temp = decimal.toString().split('-');
+        temp = decimal.toString().split('+');
         decimal = temp[1];
     }
     let length = decimal.toString().length;
@@ -47,10 +49,12 @@ function Normalize(decimal,exponent,roundMethod){
         exponent++
     }
     
+   
     if(pattern.test(decimal.toString())){
     switch(roundMethod) {
         case 0:
-            norm=[decimal,exponent];
+            temp = decimal.toString().split('-')
+            norm=[temp[1],exponent];
             return norm;
             break;
         case 1:
@@ -71,11 +75,21 @@ function Normalize(decimal,exponent,roundMethod){
             decimal = Math.round(decimal);
           break;
         case 3:
-            decimal = Math.ceil(decimal)
+            if(temp === '-'){
+                decimal = Math.floor(decimal);
+             }
+             else{
+                decimal = Math.ceil(decimal);
+             }
           // code block
           break;
         case 4:
-            decimal = Math.floor(decimal)
+            if(temp === '-'){
+                decimal = Math.ceil(decimal);
+             }
+             else{
+            decimal = Math.floor(decimal);
+             }
           // code block
           break;
       }

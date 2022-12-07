@@ -29,7 +29,10 @@ $(document).ready(function() {
 
         significand = inputElement.val();
         signbit = getSignBit(input);
-
+        let sign;
+        if(signbit == 1){
+            sign = '-';
+        }
       
         switch (radioValue) {
             case "none":
@@ -50,7 +53,12 @@ $(document).ready(function() {
 				fullbin = signbit + " " + casechecked[0] + " " + casechecked[1] + " " + casechecked[2];
 				fullbinchecked = outputprintbinary(fullbin, casechecked);																		   									 
 				console.log('hexaprint is ' + hexaprint)
+                if(signbit == 1){
+                    $(roundElement).val('-' + normalizedinput[0]);  
+                }
+                else{
 				$(roundElement).val(normalizedinput[0]);
+                }
                 //$(outputElement).val(signbit + " " + casechecked[0] + " " + casechecked[1] + " " + casechecked[2]);
 				$(outputElement).val(fullbinchecked);									 
                 $(hexElement).val(hexaprint);
@@ -75,7 +83,12 @@ $(document).ready(function() {
 				fullbin = signbit + " " + casechecked[0] + " " + casechecked[1] + " " + casechecked[2];
 				fullbinchecked = outputprintbinary(fullbin, casechecked);																		   									 
 				console.log('hexaprint is ' + hexaprint)
+				if(signbit == 1){
+                    $(roundElement).val('-' + normalizedinput[0]);  
+                }
+                else{
 				$(roundElement).val(normalizedinput[0]);
+                }
                 //$(outputElement).val(signbit + " " + casechecked[0] + " " + casechecked[1] + " " + casechecked[2]);
 				$(outputElement).val(fullbinchecked);									 
                 $(hexElement).val(hexaprint);
@@ -98,7 +111,12 @@ $(document).ready(function() {
 				fullbin = signbit + " " + casechecked[0] + " " + casechecked[1] + " " + casechecked[2];
 				fullbinchecked = outputprintbinary(fullbin, casechecked);																		   									 
 				console.log('hexaprint is ' + hexaprint)
+				if(signbit == 1){
+                    $(roundElement).val('-' + normalizedinput[0]);  
+                }
+                else{
 				$(roundElement).val(normalizedinput[0]);
+                }
                 //$(outputElement).val(signbit + " " + casechecked[0] + " " + casechecked[1] + " " + casechecked[2]);
 				$(outputElement).val(fullbinchecked);									 
                 $(hexElement).val(hexaprint);
@@ -121,7 +139,12 @@ $(document).ready(function() {
 				fullbin = signbit + " " + casechecked[0] + " " + casechecked[1] + " " + casechecked[2];
 				fullbinchecked = outputprintbinary(fullbin, casechecked);																		   									 
 				console.log('hexaprint is ' + hexaprint)
+				if(signbit == 1){
+                    $(roundElement).val('-' + normalizedinput[0]);  
+                }
+                else{
 				$(roundElement).val(normalizedinput[0]);
+                }
                 //$(outputElement).val(signbit + " " + casechecked[0] + " " + casechecked[1] + " " + casechecked[2]);
 				$(outputElement).val(fullbinchecked);									 
                 $(hexElement).val(hexaprint);
@@ -144,7 +167,12 @@ $(document).ready(function() {
 				fullbin = signbit + " " + casechecked[0] + " " + casechecked[1] + " " + casechecked[2];
 				fullbinchecked = outputprintbinary(fullbin, casechecked);																		   									 
 				console.log('hexaprint is ' + hexaprint)
+				if(signbit == 1){
+                    $(roundElement).val('-' + normalizedinput[0]);  
+                }
+                else{
 				$(roundElement).val(normalizedinput[0]);
+                }
                 //$(outputElement).val(signbit + " " + casechecked[0] + " " + casechecked[1] + " " + casechecked[2]);
 				$(outputElement).val(fullbinchecked);									 
                 $(hexElement).val(hexaprint);
