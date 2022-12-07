@@ -4,5 +4,3 @@
 3.choose a rounding option<br/>
 4. Click translate to reveal conversion results<br/>
 5. Click save to text if you want to save results locally<br/>
-
-![Page 1](CSARCH2SIMULATION\miscellaneous\Screeenshots\Page 1.png?raw=true "Page 1")
